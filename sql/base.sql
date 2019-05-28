@@ -23,7 +23,7 @@ CREATE TABLE tactivity
     place VARCHAR(700) NOT NULL,
     dateStartTime DATETIME NOT NULL,
     endTimeDate DATETIME NOT NULL,
-    state BIT NOT NULL,
+    state BOOLEAN NOT NULL,
     registrationDate DATETIME NOT NULL,
     modificationDate DATETIME NOT NULL,
     FOREIGN KEY (idUser) REFERENCES tuser(idUser),
