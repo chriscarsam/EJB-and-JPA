@@ -1,17 +1,23 @@
 package com.sambcode.app.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the tuser database table.
  * 
  */
 @Entity
-@Table(name="tuser")
-@NamedQuery(name="Tuser.findAll", query="SELECT t FROM Tuser t")
+@Table(name = "tuser")
+@NamedQuery(name = "Tuser.findAll", query = "SELECT t FROM Tuser t")
 public class Tuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +26,7 @@ public class Tuser implements Serializable {
 	private String firstName;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 
 	private String lastName;
@@ -31,8 +37,10 @@ public class Tuser implements Serializable {
 
 	private String registrationDate;
 
-	//bi-directional many-to-one association to Tactivity
-	@OneToMany(mappedBy="tuser")
+	private String birthdate;
+
+	// bi-directional many-to-one association to Tactivity
+	@OneToMany(mappedBy = "tuser")
 	private List<Tactivity> tactivities;
 
 	public Tuser() {
@@ -92,6 +100,14 @@ public class Tuser implements Serializable {
 
 	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public List<Tactivity> getTactivities() {
