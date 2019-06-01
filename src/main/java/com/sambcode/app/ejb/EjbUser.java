@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.sambcode.app.appwebschedule.MyHelper;
 import com.sambcode.app.dao.DaoUser;
 import com.sambcode.app.daointerface.IDaoUser;
 import com.sambcode.app.ejbinterface.IEjbUser;
@@ -38,6 +39,8 @@ public class EjbUser implements IEjbUser {
 
 			user.setRegistrationDate(currentDate);
 			user.setModificaionDate(currentDate);
+
+			user.setPassword(new MyHelper().encrypt(user.getPassword()));
 
 			IDaoUser iDaoUser = new DaoUser();
 
