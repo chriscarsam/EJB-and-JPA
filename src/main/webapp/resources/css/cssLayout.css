@@ -53,3 +53,15 @@ header > .menu > ul > li > a:hover
 	background-color: #A83939;
 	color: white;
 }
+
+.divAlertCorrect{
+	background-color: blue;
+	color: white;
+	padding: 7px;
+}
+
+.divAlertError{
+	background-color: red;
+	color: white;
+	padding: 7px;
+}

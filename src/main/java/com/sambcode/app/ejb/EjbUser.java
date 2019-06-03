@@ -2,7 +2,9 @@ package com.sambcode.app.ejb;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.Stateless;
@@ -37,8 +39,10 @@ public class EjbUser implements IEjbUser {
 	}
 
 	@Override
-	public boolean insert() {
+	public Map<String, String> insert() {
 		try {
+
+			Map<String, String> returnMap = new HashMap<String, String>();
 
 			String generalMessage = "";
 
@@ -51,7 +55,7 @@ public class EjbUser implements IEjbUser {
 
 			if (!user.getPassword().equals(passwordRepeat)) {
 				generalMessage += "Password do not match";
-				System.out.println("Password do not match ");
+				System.out.println("Password do not match <br>");
 			}
 
 			ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
@@ -60,8 +64,8 @@ public class EjbUser implements IEjbUser {
 			Set<ConstraintViolation<Tuser>> constrain = validator.validate(user);
 
 			for (ConstraintViolation<Tuser> item : constrain) {
-				generalMessage += item.getMessage();
-				System.out.println(item.getMessage());
+				generalMessage += item.getMessage() + "<br>";
+
 			}
 
 			user.setPassword(new MyHelper().encrypt(user.getPassword()));
@@ -76,22 +80,27 @@ public class EjbUser implements IEjbUser {
 
 			if (iDaoUser.getByEmail(em, user.getEmail()) != null) {
 
-				generalMessage += "The email was previously registered ";
+				generalMessage += "The email was previously registered <br>";
 
-				System.out.println("The email was previously registered ");
 			}
 
 			if (!generalMessage.equals("")) {
 
 				et.rollback();
 
-				return false;
+				returnMap.put("correct", "No");
+				returnMap.put("generalMessage", generalMessage);
+
+				return returnMap;
 			}
 
 			iDaoUser.insert(em, user);
 			et.commit();
 
-			return true;
+			returnMap.put("correct", "Yes");
+			returnMap.put("generalMessage", "Registration made correctly <br>");
+
+			return returnMap;
 
 		} catch (Exception e) {
 			if (et != null) {
@@ -100,7 +109,7 @@ public class EjbUser implements IEjbUser {
 
 			System.out.println("Error " + e.getMessage());
 
-			return false;
+			return null;
 
 		} finally {
 			if (em != null) {

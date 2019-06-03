@@ -1,6 +1,7 @@
 package com.sambcode.app.ejbinterface;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Local;
 
@@ -8,7 +9,8 @@ import com.sambcode.app.entity.Tuser;
 
 @Local
 public interface IEjbUser {
-	public boolean insert();
+
+	public Map<String, String> insert();
 
 	public void setListUser(List<Tuser> listTuser);
 

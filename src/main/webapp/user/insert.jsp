@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>In the web of SambCode</title>
         
-        <link rel="stylesheet" href="resources/css/cssLayaut.css"  >
+        <link rel="stylesheet" href="resources/css/cssLayout.css"  >
         <link rel="stylesheet" href="resources/css/cssComponent.css"  >  
         <link rel="stylesheet" href="resources/css/jquery-ui.min.css"  > 
         
@@ -26,6 +26,21 @@
         </nav>        
         </header>
         <section>
+        	<%
+        		if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("Yes"))
+        		{
+        			%>
+        			<div class="divAlertCorrect"><%=request.getAttribute("generalMessage") %></div>
+        			<%
+        		}
+        	    if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("No"))
+        		{
+        			%>
+        			<div class="divAlertError"><%=request.getAttribute("generalMessage") %></div>
+        			<%
+        		}
+        	%>
+        
         	<form id="frmInsertUser" action="/appwebschedule-0.0.1-SNAPSHOT/ServletUserInsert" method="post">
         		<h2>Register in the system</h2>
         		<label for="txtFirstName" class="label">First name</label>

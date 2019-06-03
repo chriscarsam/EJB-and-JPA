@@ -1,6 +1,7 @@
 package com.sambcode.app.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +54,10 @@ public class ServletUserInsert extends HttpServlet {
 			iEjbUser.getUser().setPassword(request.getParameter("passPassword"));
 			iEjbUser.setPasswordRepeat(request.getParameter("passPasswordRepeat"));
 
-			iEjbUser.insert();
+			Map<String, String> returnMap = iEjbUser.insert();
+
+			request.setAttribute("correct", returnMap.get("correct"));
+			request.setAttribute("generalMessage", returnMap.get("generalMessage"));
 
 			request.getRequestDispatcher("user/insert.jsp").forward(request, response);
 

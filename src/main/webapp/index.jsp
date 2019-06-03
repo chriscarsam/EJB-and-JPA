@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>In the web of SambCode</title>
         
-        <link rel="stylesheet" href="resources/css/cssLayaut.css"  >
+        <link rel="stylesheet" href="resources/css/cssLayout.css"  >
         <link rel="stylesheet" href="resources/css/cssComponent.css"  >  
         <link rel="stylesheet" href="resources/css/jquery-ui.min.css"  > 
         
