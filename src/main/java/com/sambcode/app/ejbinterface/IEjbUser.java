@@ -17,4 +17,8 @@ public interface IEjbUser {
 	public void setUser(Tuser user);
 
 	public Tuser getUser();
+
+	public String getPasswordRepeat();
+
+	public void setPasswordRepeat(String passwordRepeat);
 }

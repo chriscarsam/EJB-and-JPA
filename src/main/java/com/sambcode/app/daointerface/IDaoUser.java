@@ -9,6 +9,8 @@ public interface IDaoUser {
 
 	public Tuser getByIdUser(EntityManager em, int idUser) throws Exception;
 
+	public Tuser getByEmail(EntityManager em, String email) throws Exception;
+
 	public boolean update(EntityManager em, Tuser user) throws Exception;
 
 }

@@ -43,6 +43,10 @@
         		<label for="passPassword" class="label">Password</label>
         		<input type="password" id="passPassword" name="passPassword" class="password">
         		<br>
+        		<label for="passPasswordRepeat" class="label">Repeat password</label>
+        		<input type="password" id="passPasswordRepeat" name="passPasswordRepeat" class="password">
+        		<br>
+        		
         		<input type="submit" value="Register" class="button">
         	</form>
         </section>

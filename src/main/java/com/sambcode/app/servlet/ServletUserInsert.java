@@ -51,6 +51,7 @@ public class ServletUserInsert extends HttpServlet {
 			iEjbUser.getUser().setBirthdate(request.getParameter("dateBirthdate"));
 			iEjbUser.getUser().setEmail(request.getParameter("txtEmail"));
 			iEjbUser.getUser().setPassword(request.getParameter("passPassword"));
+			iEjbUser.setPasswordRepeat(request.getParameter("passPasswordRepeat"));
 
 			iEjbUser.insert();
 

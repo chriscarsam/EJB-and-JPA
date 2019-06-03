@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the tuser database table.
@@ -17,26 +20,41 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tuser")
-@NamedQuery(name = "Tuser.findAll", query = "SELECT t FROM Tuser t")
+@NamedQuery(name = "Tuser.getByEmail", query = "SELECT t FROM Tuser t WHERE t.email=:email")
 public class Tuser implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private String email;
-
-	private String firstName;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 
+	@NotNull(message = "The \"Email\" field is required")
+	@Size(min = 6, max = 700, message = "The \"Email\" field must have the length between 6-700")
+	@Pattern(regexp = "[a-zA-Z0-9\\.\\-\\_]+\\@[a-zA-Z0-9\\-\\_]+\\.[a-zA-Z]{2,4}", message = "The \"Email\" field does not comply with the proper format example: example@gmail.com")
+	private String email;
+
+	@NotNull(message = "The \"First Name\" field is required")
+	@Size(min = 1, max = 70, message = "The \"First Name\" field must have the length between 1-70")
+	private String firstName;
+
+	@NotNull(message = "The \"Last Name\" field is required")
+	@Size(min = 1, max = 40, message = "The \"Last Name\" field must have the length between 1-40")
 	private String lastName;
 
+	@NotNull(message = "The \"Modification Date\" field is required")
+	@Pattern(regexp = "\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}", message = "The \"Modification Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
 	private String modificaionDate;
 
+	@NotNull(message = "The \"Password\" field is required")
+	@Size(min = 4, max = 700, message = "The \"Password\" field must have the length between 4-700")
 	private String password;
 
+	@NotNull(message = "The \"Registration Date\" field is required")
+	@Pattern(regexp = "\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}", message = "The \"Registration Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
 	private String registrationDate;
 
+	@NotNull(message = "The \"Date of birth\" field is required")
+	@Pattern(regexp = "\\d{4}\\-\\d{2}\\-\\d{2}", message = "The \"Date of birth\" field does not comply with the proper format example: mm/dd/yyyy")
 	private String birthdate;
 
 	// bi-directional many-to-one association to Tactivity
