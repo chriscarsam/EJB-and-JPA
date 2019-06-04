@@ -40,9 +40,10 @@ public class EjbUser implements IEjbUser {
 
 	@Override
 	public Map<String, String> insert() {
-		try {
 
-			Map<String, String> returnMap = new HashMap<String, String>();
+		Map<String, String> returnMap = new HashMap<String, String>();
+
+		try {
 
 			String generalMessage = "";
 
@@ -109,7 +110,9 @@ public class EjbUser implements IEjbUser {
 
 			System.out.println("Error " + e.getMessage());
 
-			return null;
+			returnMap.put("correct", "No");
+
+			return returnMap;
 
 		} finally {
 			if (em != null) {
