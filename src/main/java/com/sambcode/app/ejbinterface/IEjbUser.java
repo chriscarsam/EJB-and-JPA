@@ -14,6 +14,8 @@ public interface IEjbUser {
 
 	public Tuser getByIdUser();
 
+	public void update();
+
 	public void setListUser(List<Tuser> listTuser);
 
 	public List<Tuser> getListUser();

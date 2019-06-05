@@ -23,8 +23,9 @@ public class DaoUser implements IDaoUser {
 
 	@Override
 	public boolean update(EntityManager em, Tuser user) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		em.merge(user);
+
+		return true;
 	}
 
 	@Override

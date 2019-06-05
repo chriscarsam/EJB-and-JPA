@@ -168,6 +168,48 @@ public class EjbUser implements IEjbUser {
 		}
 	}
 
+	public void update() {
+		try {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+			String currentDate = sdf.format(new Date());
+
+			user.setModificaionDate(currentDate);
+
+			IDaoUser iDaoUser = new DaoUser();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			iDaoUser.update(em, user);
+
+			et.commit();
+
+		} catch (Exception e) {
+			if (et != null) {
+				et.rollback();
+			}
+
+			System.out.println("Error " + e.getMessage());
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
 	@Override
 	public Tuser getUser() {
 		return user;

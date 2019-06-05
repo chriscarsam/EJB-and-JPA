@@ -47,8 +47,18 @@ public class ServletUserEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		iEjbUser = new EjbUser();
+
+		iEjbUser.getByIdUser();
+
+		iEjbUser.getUser().setFirstName(request.getParameter("txtFirstName"));
+		iEjbUser.getUser().setLastName(request.getParameter("txtLastName"));
+		iEjbUser.getUser().setBirthdate(request.getParameter("dateBirthdate"));
+		iEjbUser.getUser().setEmail(request.getParameter("txtEmail"));
+
+		iEjbUser.update();
+
+		response.sendRedirect("/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit");
 	}
 
 }

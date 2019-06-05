@@ -59,7 +59,7 @@
         		<label for="txtEmail" class="label">Email</label>
         		<input type="text" id="txtEmail" name="txtEmail" class="text" value="<%=user.getEmail()%>">
         		<br>        		        		
-        		<input type="submit" value="Register" class="button">
+        		<input type="submit" value="Save data" class="button">
         	</form>
         </section>
     </body>    
