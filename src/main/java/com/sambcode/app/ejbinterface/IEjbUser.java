@@ -12,6 +12,8 @@ public interface IEjbUser {
 
 	public Map<String, String> insert();
 
+	public Tuser getByIdUser();
+
 	public void setListUser(List<Tuser> listTuser);
 
 	public List<Tuser> getListUser();

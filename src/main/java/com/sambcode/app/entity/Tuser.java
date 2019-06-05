@@ -42,7 +42,7 @@ public class Tuser implements Serializable {
 	private String lastName;
 
 	@NotNull(message = "The \"Modification Date\" field is required")
-	@Pattern(regexp = "\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}", message = "The \"Modification Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
+	@Pattern(regexp = "(\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2})|(\\d{4}\\-\\d{2}\\-\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}.[0-9]{1,3})", message = "The \"Modification Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
 	private String modificaionDate;
 
 	@NotNull(message = "The \"Password\" field is required")
@@ -50,7 +50,7 @@ public class Tuser implements Serializable {
 	private String password;
 
 	@NotNull(message = "The \"Registration Date\" field is required")
-	@Pattern(regexp = "\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}", message = "The \"Registration Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
+	@Pattern(regexp = "(\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2})|(\\d{4}\\-\\d{2}\\-\\d{2}\\s\\d{2}\\:\\d{2}\\:\\d{2}.[0-9]{1,3})", message = "The \"Registration Date\" field does not comply with the proper format example: yyyy/mm/dd hh:mm:ss")
 	private String registrationDate;
 
 	@NotNull(message = "The \"Date of birth\" field is required")

@@ -129,6 +129,45 @@ public class EjbUser implements IEjbUser {
 
 	}
 
+	public Tuser getByIdUser() {
+		try {
+			IDaoUser iDaoUser = new DaoUser();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			user = iDaoUser.getByIdUser(em, 8);
+
+			et.commit();
+
+			return user;
+
+		} catch (Exception e) {
+			if (et != null) {
+				et.rollback();
+			}
+
+			System.out.println("Error " + e.getMessage());
+
+			return null;
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
 	@Override
 	public Tuser getUser() {
 		return user;

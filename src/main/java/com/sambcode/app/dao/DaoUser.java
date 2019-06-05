@@ -18,8 +18,7 @@ public class DaoUser implements IDaoUser {
 
 	@Override
 	public Tuser getByIdUser(EntityManager em, int idUser) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Tuser.class, idUser);
 	}
 
 	@Override
