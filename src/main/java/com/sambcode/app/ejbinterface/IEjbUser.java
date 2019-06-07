@@ -24,6 +24,14 @@ public interface IEjbUser {
 
 	public Tuser getUser();
 
+	public String getOldPassword();
+
+	public void setOldPassword(String oldpPassword);
+
+	public String getNewPassword();
+
+	public void setNewPassword(String newPassword);
+
 	public String getPasswordRepeat();
 
 	public void setPasswordRepeat(String passwordRepeat);

@@ -56,6 +56,14 @@ public class ServletUserEdit extends HttpServlet {
 		iEjbUser.getUser().setBirthdate(request.getParameter("dateBirthdate"));
 		iEjbUser.getUser().setEmail(request.getParameter("txtEmail"));
 
+		iEjbUser.setOldPassword("");
+
+		if (request.getParameter("radioChangePassword").equals("Yes")) {
+			iEjbUser.setOldPassword(request.getParameter("passOldPassword"));
+			iEjbUser.setNewPassword(request.getParameter("passNewPassword"));
+			iEjbUser.setPasswordRepeat(request.getParameter("passRepeatNewPassword"));
+		}
+
 		iEjbUser.update();
 
 		response.sendRedirect("/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit");

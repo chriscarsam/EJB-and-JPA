@@ -32,6 +32,8 @@ public class EjbUser implements IEjbUser {
 	private Tuser user;
 	private List<Tuser> listUser;
 
+	private String oldPassword;
+	private String newPassword;
 	private String passwordRepeat;
 
 	public EjbUser() {
@@ -139,7 +141,7 @@ public class EjbUser implements IEjbUser {
 
 			et.begin();
 
-			user = iDaoUser.getByIdUser(em, 8);
+			user = iDaoUser.getByIdUser(em, 14);
 
 			et.commit();
 
@@ -176,6 +178,14 @@ public class EjbUser implements IEjbUser {
 			String currentDate = sdf.format(new Date());
 
 			user.setModificaionDate(currentDate);
+
+			if (!oldPassword.equals("")) {
+				if (user.getPassword().equals(new MyHelper().encrypt(oldPassword))) {
+					user.setPassword(new MyHelper().encrypt(newPassword));
+				} else {
+					/* dddddddddddd */
+				}
+			}
 
 			IDaoUser iDaoUser = new DaoUser();
 
@@ -238,6 +248,26 @@ public class EjbUser implements IEjbUser {
 	@Override
 	public void setPasswordRepeat(String passwordRepeat) {
 		this.passwordRepeat = passwordRepeat;
+	}
+
+	@Override
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	@Override
+	public void setOldPassword(String oldpPassword) {
+		this.oldPassword = oldpPassword;
+	}
+
+	@Override
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	@Override
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 
 }
