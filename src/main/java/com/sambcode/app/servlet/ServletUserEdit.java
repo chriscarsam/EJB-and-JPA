@@ -1,12 +1,14 @@
 package com.sambcode.app.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sambcode.app.ejb.EjbUser;
 import com.sambcode.app.ejbinterface.IEjbUser;
@@ -38,6 +40,16 @@ public class ServletUserEdit extends HttpServlet {
 
 		request.setAttribute("user", iEjbUser.getByIdUser());
 
+		HttpSession httpSession = request.getSession();
+
+		if (httpSession.getAttribute("correct") != null) {
+			request.setAttribute("correct", httpSession.getAttribute("correct"));
+			request.setAttribute("generalMessage", httpSession.getAttribute("generalMessage"));
+
+			httpSession.removeAttribute("correct");
+			httpSession.removeAttribute("generalMessafe");
+		}
+
 		request.getRequestDispatcher("user/edit.jsp").forward(request, response);
 	}
 
@@ -64,7 +76,12 @@ public class ServletUserEdit extends HttpServlet {
 			iEjbUser.setPasswordRepeat(request.getParameter("passRepeatNewPassword"));
 		}
 
-		iEjbUser.update();
+		Map<String, String> returnMap = iEjbUser.update();
+
+		HttpSession httpSession = request.getSession();
+
+		httpSession.setAttribute("correct", returnMap.get("correct"));
+		httpSession.setAttribute("generalMessage", returnMap.get("generalMessage"));
 
 		response.sendRedirect("/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit");
 	}

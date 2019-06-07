@@ -44,10 +44,9 @@ public class EjbUser implements IEjbUser {
 	public Map<String, String> insert() {
 
 		Map<String, String> returnMap = new HashMap<String, String>();
+		String generalMessage = "";
 
 		try {
-
-			String generalMessage = "";
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
@@ -141,7 +140,7 @@ public class EjbUser implements IEjbUser {
 
 			et.begin();
 
-			user = iDaoUser.getByIdUser(em, 14);
+			user = iDaoUser.getByIdUser(em, 8);
 
 			et.commit();
 
@@ -170,7 +169,12 @@ public class EjbUser implements IEjbUser {
 		}
 	}
 
-	public void update() {
+	@Override
+	public Map<String, String> update() {
+
+		Map<String, String> returnMap = new HashMap<String, String>();
+		String generalMessage = "";
+
 		try {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -183,8 +187,15 @@ public class EjbUser implements IEjbUser {
 				if (user.getPassword().equals(new MyHelper().encrypt(oldPassword))) {
 					user.setPassword(new MyHelper().encrypt(newPassword));
 				} else {
-					/* dddddddddddd */
+					generalMessage += "The previus password is not correct <br>";
 				}
+			}
+
+			if (!generalMessage.equals("")) {
+				returnMap.put("correct", "No");
+				returnMap.put("generalMessage", generalMessage);
+
+				return returnMap;
 			}
 
 			IDaoUser iDaoUser = new DaoUser();
@@ -199,12 +210,21 @@ public class EjbUser implements IEjbUser {
 
 			et.commit();
 
+			returnMap.put("correct", "Yes");
+			returnMap.put("generalMessage", "Data saved correctly");
+
+			return returnMap;
+
 		} catch (Exception e) {
 			if (et != null) {
 				et.rollback();
 			}
 
 			System.out.println("Error " + e.getMessage());
+
+			returnMap.put("correct", "No");
+
+			return returnMap;
 
 		} finally {
 			if (em != null) {
