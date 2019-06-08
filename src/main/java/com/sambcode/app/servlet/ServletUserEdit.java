@@ -63,6 +63,8 @@ public class ServletUserEdit extends HttpServlet {
 
 		iEjbUser.getByIdUser();
 
+		iEjbUser.setOldEmail(iEjbUser.getUser().getEmail());
+
 		iEjbUser.getUser().setFirstName(request.getParameter("txtFirstName"));
 		iEjbUser.getUser().setLastName(request.getParameter("txtLastName"));
 		iEjbUser.getUser().setBirthdate(request.getParameter("dateBirthdate"));

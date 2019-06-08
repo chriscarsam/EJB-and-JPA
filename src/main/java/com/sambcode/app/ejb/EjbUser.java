@@ -32,6 +32,7 @@ public class EjbUser implements IEjbUser {
 	private Tuser user;
 	private List<Tuser> listUser;
 
+	private String oldEmail;
 	private String oldPassword;
 	private String newPassword;
 	private String passwordRepeat;
@@ -191,6 +192,16 @@ public class EjbUser implements IEjbUser {
 				}
 			}
 
+			ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+			Validator validator = validatorFactory.getValidator();
+
+			Set<ConstraintViolation<Tuser>> constrain = validator.validate(user);
+
+			for (ConstraintViolation<Tuser> item : constrain) {
+				generalMessage += item.getMessage() + "<br>";
+
+			}
+
 			if (!generalMessage.equals("")) {
 				returnMap.put("correct", "No");
 				returnMap.put("generalMessage", generalMessage);
@@ -205,6 +216,23 @@ public class EjbUser implements IEjbUser {
 			et = em.getTransaction();
 
 			et.begin();
+
+			if (iDaoUser.getByEmail(em, user.getEmail()) != null) {
+
+				if (!iDaoUser.getByEmail(em, user.getEmail()).getEmail().equals(oldEmail)) {
+					generalMessage += "The email was previously registered <br>";
+				}
+			}
+
+			if (!generalMessage.equals("")) {
+
+				et.rollback();
+
+				returnMap.put("correct", "No");
+				returnMap.put("generalMessage", generalMessage);
+
+				return returnMap;
+			}
 
 			iDaoUser.update(em, user);
 
@@ -288,6 +316,16 @@ public class EjbUser implements IEjbUser {
 	@Override
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
+	}
+
+	@Override
+	public String getOldEmail() {
+		return oldEmail;
+	}
+
+	@Override
+	public void setOldEmail(String oldEmail) {
+		this.oldEmail = oldEmail;
 	}
 
 }

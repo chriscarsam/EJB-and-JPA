@@ -15,31 +15,9 @@
     </head>
     
     <body>
-        <header>
-        <nav class="menu">
-        	<ul>
-        		<li><a href="#">Start</a></li>
-        		<li><a href="#">Register data in the system</a></li>
-        		<li><a href="#">See registered data</a></li>
-        		
-        	</ul>
-        </nav>        
-        </header>
+        <%@include file="/partial/header.jsp"%>
         <section>
-        	<%
-        		if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("Yes"))
-        		{
-        			%>
-        			<div class="divAlertCorrect"><%=request.getAttribute("generalMessage") %></div>
-        			<%
-        		}
-        	    if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("No"))
-        		{
-        			%>
-        			<div class="divAlertError"><%=request.getAttribute("generalMessage") %></div>
-        			<%
-        		}
-        	%>
+        	
         
         	<form id="frmInsertUser" action="/appwebschedule-0.0.1-SNAPSHOT/ServletUserInsert" method="post">
         		<h2>Register in the system</h2>

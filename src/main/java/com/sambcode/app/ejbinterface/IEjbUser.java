@@ -35,4 +35,8 @@ public interface IEjbUser {
 	public String getPasswordRepeat();
 
 	public void setPasswordRepeat(String passwordRepeat);
+
+	public String getOldEmail();
+
+	public void setOldEmail(String oldEmail);
 }

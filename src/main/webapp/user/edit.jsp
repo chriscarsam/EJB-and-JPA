@@ -16,34 +16,13 @@
     </head>
     
     <body>
-        <header>
-        <nav class="menu">
-        	<ul>
-        		<li><a href="#">Start</a></li>
-        		<li><a href="#">Register data in the system</a></li>
-        		<li><a href="#">See registered data</a></li>
-        		
-        	</ul>
-        </nav>        
-        </header>
+        
         <section>
-        	<%
-        		if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("Yes"))
-        		{
-        			%>
-        			<div class="divAlertCorrect"><%=request.getAttribute("generalMessage") %></div>
-        			<%
-        		}
-        	    if(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("No"))
-        		{
-        			%>
-        			<div class="divAlertError"><%=request.getAttribute("generalMessage") %></div>
-        			<%
-        		}
-        	%>
+        	
         	<%
         		Tuser user = (Tuser)request.getAttribute("user");
         	%>
+        	<%@include file="/partial/header.jsp"%>
         
         	<form id="frmEditUser" action="/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit" method="post">
         		<h2>My personal information</h2>
@@ -76,7 +55,7 @@
 	        		<input type="password" id="passRepeatNewPassword" name="passRepeatNewPassword" class="password">
         			<br>
         		</div>        		        		
-        		<input type="submit" value="Save data" class="button">
+        		<input type="button" value="Save data" class="button" onclick="submitFrmEditUser();">
         	</form>
         </section>
         <script>
@@ -92,6 +71,15 @@
 							$('#passNewPassword').val('');
 							$('#passRepeatNewPassword').val('');
 						}
+            	}
+        	
+        	function submitFrmEditUser(){
+            	
+					if($('#passNewPassword').val()===$('#passRepeatNewPassword').val()){
+							return $('#frmEditUser').submit();
+						}
+
+					alert('Passwords do not match');
             	}
         </script>
     </body>    
