@@ -16,6 +16,10 @@ public interface IEjbUser {
 
 	public Map<String, String> update();
 
+	public void getByEmail(String email);
+
+	public Map<String, String> login(String password);
+
 	public void setListUser(List<Tuser> listTuser);
 
 	public List<Tuser> getListUser();

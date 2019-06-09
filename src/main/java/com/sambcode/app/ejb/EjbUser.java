@@ -268,6 +268,95 @@ public class EjbUser implements IEjbUser {
 		}
 	}
 
+	public void getByEmail(String email) {
+		try {
+			IDaoUser iDaoUser = new DaoUser();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			user = iDaoUser.getByEmail(em, email);
+
+			et.commit();
+
+		} catch (Exception e) {
+			if (et != null) {
+				et.rollback();
+			}
+
+			System.out.println("Error " + e.getMessage());
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
+	public Map<String, String> login(String password) {
+
+		Map<String, String> returnMap = new HashMap<String, String>();
+		String generalMessage = "";
+
+		try {
+
+			if (user == null) {
+				generalMessage += "Incorrect user or password <br>";
+			} else {
+				if ((new MyHelper()).encrypt(password).equals(user.getPassword())) {
+					returnMap.put("correct", "Yes");
+					returnMap.put("generalMessage", "Right login");
+
+					return returnMap;
+				} else {
+					generalMessage += "Incorrect user or password <br>";
+				}
+			}
+
+			if (!generalMessage.equals("")) {
+				returnMap.put("correct", "No");
+				returnMap.put("generalMessage", generalMessage);
+
+				return returnMap;
+			}
+
+			return null;
+
+		} catch (Exception e) {
+			if (et != null) {
+				et.rollback();
+			}
+
+			System.out.println("Error " + e.getMessage());
+
+			returnMap.put("correct", "No");
+
+			return returnMap;
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
 	@Override
 	public Tuser getUser() {
 		return user;
