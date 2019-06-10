@@ -12,7 +12,7 @@ public interface IEjbUser {
 
 	public Map<String, String> insert();
 
-	public Tuser getByIdUser();
+	public Tuser getByIdUser(int idUser);
 
 	public Map<String, String> update();
 

@@ -131,7 +131,7 @@ public class EjbUser implements IEjbUser {
 
 	}
 
-	public Tuser getByIdUser() {
+	public Tuser getByIdUser(int idUser) {
 		try {
 			IDaoUser iDaoUser = new DaoUser();
 
@@ -141,7 +141,7 @@ public class EjbUser implements IEjbUser {
 
 			et.begin();
 
-			user = iDaoUser.getByIdUser(em, 8);
+			user = iDaoUser.getByIdUser(em, idUser);
 
 			et.commit();
 

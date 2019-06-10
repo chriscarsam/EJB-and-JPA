@@ -57,7 +57,7 @@ public class ServletUserLogin extends HttpServlet {
 		if (returnMap.get("correct").equals("Yes")) {
 			HttpSession httpSession = request.getSession();
 
-			httpSession.setAttribute("idUser", request.getParameter("txtEmail"));
+			httpSession.setAttribute("idUser", iEjbUser.getUser().getIdUser());
 			httpSession.setAttribute("email", request.getParameter("txtEmail"));
 
 			response.sendRedirect("/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit");

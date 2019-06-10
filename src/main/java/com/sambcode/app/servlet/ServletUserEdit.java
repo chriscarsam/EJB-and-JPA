@@ -38,9 +38,9 @@ public class ServletUserEdit extends HttpServlet {
 			throws ServletException, IOException {
 		iEjbUser = new EjbUser();
 
-		request.setAttribute("user", iEjbUser.getByIdUser());
-
 		HttpSession httpSession = request.getSession();
+
+		request.setAttribute("user", iEjbUser.getByIdUser((int) httpSession.getAttribute("idUser")));
 
 		if (httpSession.getAttribute("correct") != null) {
 			request.setAttribute("correct", httpSession.getAttribute("correct"));
@@ -60,8 +60,9 @@ public class ServletUserEdit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		iEjbUser = new EjbUser();
+		HttpSession httpSession = request.getSession();
 
-		iEjbUser.getByIdUser();
+		iEjbUser.getByIdUser((int) httpSession.getAttribute("idUser"));
 
 		iEjbUser.setOldEmail(iEjbUser.getUser().getEmail());
 
@@ -79,8 +80,6 @@ public class ServletUserEdit extends HttpServlet {
 		}
 
 		Map<String, String> returnMap = iEjbUser.update();
-
-		HttpSession httpSession = request.getSession();
 
 		httpSession.setAttribute("correct", returnMap.get("correct"));
 		httpSession.setAttribute("generalMessage", returnMap.get("generalMessage"));
