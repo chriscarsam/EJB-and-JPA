@@ -9,7 +9,19 @@
 	</nav>
 	<div id="divLogin">
 		<b>User:</b>
-		<%=request.getSession().getAttribute("email")!=null ? request.getSession().getAttribute("email") : "Anonymous"%>
+		<%
+			if(request.getSession().getAttribute("email")!=null){
+				%>
+				<%=request.getSession().getAttribute("email")%> |
+				<a href="/appwebschedule-0.0.1-SNAPSHOT/ServletUserLogout">Sing off</a>				
+				<%
+			}else{
+			%>
+				<%="Anonymous"%>
+			<%	
+			}			
+		%>
+		
 	</div>
 </header>
 <%
