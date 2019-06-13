@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
   <display-name>appwebschedule</display-name>
-  
   <filter>
-  	<display-name>FilterSession</display-name>
-  	<filter-name>FilterSession</filter-name>
-  	<filter-class>com.sambcode.app.filter.FilterSession</filter-class>
+    <display-name>FilterSession</display-name>
+    <filter-name>FilterSession</filter-name>
+    <filter-class>com.sambcode.app.filter.FilterSession</filter-class>
   </filter>
   <filter-mapping>
-  	<filter-name>FilterSession</filter-name>
-  	<url-pattern>/*</url-pattern>
+    <filter-name>FilterSession</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
