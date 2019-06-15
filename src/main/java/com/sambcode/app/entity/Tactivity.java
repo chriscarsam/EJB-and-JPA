@@ -24,14 +24,16 @@ public class Tactivity implements Serializable {
 
 	private String dateStartTime;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idActivity;
+
+	private String firstName;
+
 	@Lob
 	private String description;
 
 	private String endTimeDate;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idActivity;
 
 	private String modificationDate;
 
@@ -55,6 +57,14 @@ public class Tactivity implements Serializable {
 
 	public void setDateStartTime(String dateStartTime) {
 		this.dateStartTime = dateStartTime;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getDescription() {

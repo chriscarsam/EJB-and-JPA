@@ -33,13 +33,13 @@
         		<br>
         		<label for="dateStartDate" class="label">Start date</label>
         		<input type="date" id="dateStartDate" name="dateStartDate" class="text" value="<%=(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("No")) ? request.getParameter("dateStartDate") : ""%>">
-        		<select id="selectHourStart" class="selectTime">
+        		<select id="selectHourStart" name="selectHourStart" class="selectTime">
         			<option value="">Hour</option>
         			<c:forEach var="i" begin="0" end="23">
         				<option value="${i}">${i}</option>
         			</c:forEach>
         		</select>
-        		<select id="selectMinuteStart" class="selectTime">
+        		<select id="selectMinuteStart" name="selectMinuteStart" class="selectTime">
         			<option value="">Minute</option>
         			<c:forEach var="i" begin="0" end="59">
         				<option value="${i}">${i}</option>
@@ -48,13 +48,13 @@
         		<br>
         		<label for="dateFinishDate" class="label">Finish date</label>
         		<input type="date" id="dateFinishDate" name="dateFinishDate" class="text" value="<%=(request.getAttribute("correct")!=null && request.getAttribute("correct").equals("No")) ? request.getParameter("dateFinishDate") : ""%>">
-        		<select id="selectHourEnd" class="selectTime">
+        		<select id="selectHourEnd" name="selectHourEnd" class="selectTime">
         			<option value="">Hour</option>
         			<c:forEach var="i" begin="0" end="23">
         				<option value="${i}">${i}</option>
         			</c:forEach>
         		</select>
-        		<select id="selectMinuteEnd" class="selectTime">
+        		<select id="selectMinuteEnd" name="selectMinuteEnd" class="selectTime">
         			<option value="">Minute</option>
         			<c:forEach var="i" begin="0" end="59">
         				<option value="${i}">${i}</option>
