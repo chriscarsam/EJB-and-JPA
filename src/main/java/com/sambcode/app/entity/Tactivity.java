@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -18,11 +19,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tactivity")
-@NamedQuery(name = "Tactivity.findAll", query = "SELECT t FROM Tactivity t")
+@NamedQueries({
+		@NamedQuery(name = "Tactivity.getByIdUser", query = "SELECT t FROM Tactivity t WHERE t.tuser.idUser=:idUser"),
+		@NamedQuery(name = "Tactivity.getByIdUserAndState", query = "SELECT t FROM Tactivity t WHERE t.tuser.idUser=:idUser and t.state=:state") })
 public class Tactivity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private String dateStartTime;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,8 @@ public class Tactivity implements Serializable {
 
 	@Lob
 	private String description;
+
+	private String dateStartTime;
 
 	private String endTimeDate;
 

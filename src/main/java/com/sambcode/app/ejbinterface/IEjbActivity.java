@@ -11,6 +11,10 @@ import com.sambcode.app.entity.Tactivity;
 public interface IEjbActivity {
 	public Map<String, String> insert();
 
+	public void getByIdUser(int idUser);
+
+	public void getByIdUserAndState(int idUser, boolean state);
+
 	public void setListActivity(List<Tactivity> listTactivity);
 
 	public List<Tactivity> getListActivity();

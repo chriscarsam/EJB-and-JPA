@@ -115,6 +115,75 @@ public class EjbActivity implements IEjbActivity {
 	}
 
 	@Override
+	public void getByIdUser(int idUser) {
+
+		try {
+
+			IDaoActivity iDaoActivity = new DaoActivity();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			listActivity = iDaoActivity.getByIdUser(em, idUser);
+
+			et.commit();
+
+		} catch (Exception e) {
+
+			System.out.println("Error " + e.getMessage());
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
+	@Override
+	public void getByIdUserAndState(int idUser, boolean state) {
+		try {
+
+			IDaoActivity iDaoActivity = new DaoActivity();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			listActivity = iDaoActivity.getByIdUserAndState(em, idUser, state);
+
+			et.commit();
+
+		} catch (Exception e) {
+
+			System.out.println("Error " + e.getMessage());
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
+	@Override
 	public void setListActivity(List<Tactivity> listTactivity) {
 		this.listActivity = listTactivity;
 
