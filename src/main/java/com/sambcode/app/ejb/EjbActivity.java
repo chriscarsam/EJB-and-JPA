@@ -184,6 +184,44 @@ public class EjbActivity implements IEjbActivity {
 	}
 
 	@Override
+	public void changeStatusActivity(int idActivity, boolean state) {
+		try {
+
+			IDaoActivity iDaoActivity = new DaoActivity();
+
+			emf = Persistence.createEntityManagerFactory("appwebschedule");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+
+			et.begin();
+
+			activity = iDaoActivity.getByIdActivity(em, idActivity);
+
+			activity.setState(state);
+
+			iDaoActivity.changeStatus(em, activity);
+
+			et.commit();
+
+		} catch (Exception e) {
+
+			System.out.println("Error " + e.getMessage());
+
+		} finally {
+			if (em != null) {
+				em.close();
+				em = null;
+			}
+			if (emf != null) {
+				emf.close();
+				emf = null;
+			}
+
+			et = null;
+		}
+	}
+
+	@Override
 	public void setListActivity(List<Tactivity> listTactivity) {
 		this.listActivity = listTactivity;
 

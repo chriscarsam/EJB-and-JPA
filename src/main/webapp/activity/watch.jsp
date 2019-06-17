@@ -37,6 +37,7 @@
         				<th>Start date</th>
         				<th>End date</th>
         				<th>Registration date</th>
+        				<th></th>
         			</tr>
         		</thead>
         		<tbody>
@@ -50,10 +51,26 @@
         					<td>${item.getDateStartTime()}</td>
         					<td>${item.getEndTimeDate()}</td>
         					<td>${item.getRegistrationDate()}</td>
+        					<td>
+        					<c:if test="${item.isState()==false}">
+        						<input type="button" value="End activity" onclick="endActivity(${item.getIdActivity()});">
+        					</c:if>
+        					<c:if test="${item.isState()==true}">
+        						<input type="button" value="Restore activity" onclick="restoreActivity(${item.getIdActivity()});">
+        					</c:if>        						        						
+        					</td>
         				</tr>
         			</c:forEach>
         		</tbody>
         	</table>      	
         </section>
-    </body>    
+    </body>  
+    <script>
+		function endActivity(idActivity){
+				window.location.href='/appwebschedule-0.0.1-SNAPSHOT/ServletActivityChangeStatus?idActivity='+idActivity+'&state=true';
+			}
+		function restoreActivity(idActivity){
+			window.location.href='/appwebschedule-0.0.1-SNAPSHOT/ServletActivityChangeStatus?idActivity='+idActivity+'&state=false';
+		}
+    </script>  
 </html>

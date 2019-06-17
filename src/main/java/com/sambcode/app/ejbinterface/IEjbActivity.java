@@ -15,6 +15,8 @@ public interface IEjbActivity {
 
 	public void getByIdUserAndState(int idUser, boolean state);
 
+	public void changeStatusActivity(int idActivity, boolean state);
+
 	public void setListActivity(List<Tactivity> listTactivity);
 
 	public List<Tactivity> getListActivity();
