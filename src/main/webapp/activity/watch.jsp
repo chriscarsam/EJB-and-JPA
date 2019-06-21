@@ -26,6 +26,8 @@
         	<a href="/appwebschedule-0.0.1-SNAPSHOT/ServletActivityGetByUserAndState?state=true">Completed activities</a>
         	-
         	<a href="/appwebschedule-0.0.1-SNAPSHOT/ServletActivityGetByUserAndState?state=false">Pending activities</a>
+        	-
+        	<a href="/appwebschedule-0.0.1-SNAPSHOT/ServletActivityGenerateReport" target="_blank">Generate Report</a>
         </div>
         	<table class="table">
         		<thead>

@@ -1,10 +1,10 @@
 <header>
 	<nav class="menu">
 		<ul>
-			<li><a href="#">Start</a></li>
-			<li><a href="#">Register data in the system</a></li>
-			<li><a href="#">See registered data</a></li>
-
+			<li><a href="/appwebschedule-0.0.1-SNAPSHOT/ServletActivityInsert">Insert Activities</a></li>
+			<li><a href="/appwebschedule-0.0.1-SNAPSHOT/ServletActivityGetByUser">See Activities</a></li>			
+			<li><a href="/appwebschedule-0.0.1-SNAPSHOT/ServletUserInsert">Insert User</a></li>
+			<li><a href="/appwebschedule-0.0.1-SNAPSHOT/ServletUserEdit">Edit User</a></li>
 		</ul>
 	</nav>
 	<div id="divLogin">
